@@ -2,6 +2,12 @@ var express = require("express");
 var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
+var graphqlHTTP = require("express-graphql");
+var graphqlSchema = require("./graphql/schema");
+var graphqlRoot = require("./graphql/root");
+var firebaseAuth = require("./firebaseAuth");
+var fs = require("fs");
+var { buildSchema } = require("graphql");
 
 var app = express();
 
@@ -9,9 +15,16 @@ app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(firebaseAuth);
 
-app.use("/graphql", index);
-app.use("/users", users);
+app.use(
+  "/graphql",
+  graphqlHTTP({
+    schema: buildSchema(fs.readFileSync("./graphql/schema.graphql", "utf-8")),
+    rootValue: graphqlRoot,
+    graphiql: true
+  })
+);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

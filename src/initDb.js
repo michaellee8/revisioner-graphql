@@ -5,11 +5,11 @@ const db = new Sequelize("revisioner", "root", "mlml1026", {
   dialect: "mysql"
 });
 
+const models = require("./models")(db);
 db
   .authenticate()
   .then(() => {
     console.log("Connection has been established successfully.");
-    const models = require("./models")(db);
     Object.keys(models).forEach(key =>
       models[key]
         .sync({ force: false })
@@ -22,3 +22,5 @@ db
   .catch(err => {
     console.error("Unable to connect to the database:", err);
   });
+
+module.exports = { db, models };

@@ -20,8 +20,15 @@ module.exports = sequelize => {
     User: sequelize.import(__dirname + "/users"),
     UserTag: sequelize.import(__dirname + "/userTags")
   };
+
   models.Question.hasMany(models.QuestionComment, {
     as: "questionComments",
+    foreignKey: "questionId",
+    sourceKey: "questionId"
+  });
+
+  models.Question.hasMany(models.QuestionAnswer, {
+    as: "questionAnswers",
     foreignKey: "questionId",
     sourceKey: "questionId"
   });
@@ -75,7 +82,7 @@ module.exports = sequelize => {
   });
 
   models.User.hasMany(models.QuestionSet, {
-    as: "questionSet",
+    as: "questionSets",
     foreignKey: "userId",
     sourceKey: "userId"
   });

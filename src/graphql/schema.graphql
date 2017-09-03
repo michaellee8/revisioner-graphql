@@ -1,0 +1,230 @@
+type Question {
+  questionId: Int!
+  questionSet: QuestionSet
+  questionTitle: String
+  questionContent: String
+  questionMediaUrl: String
+  questionType: String
+  questionCreateTimestamp: Int
+  questionLastUpdateTimestamp: Int
+  questionAnswers: [QuestionAnswer]
+  questionComments: [QuestionComment]
+  questionReactions: [QuestionReaction]
+  questionTags: [QuestionTag]
+  questionSumbit: [QuestionSumbit]
+  questionReport: [QuestionReport]
+}
+
+type QuestionSet {
+  questionSetId: Int!
+  user: User
+  questionSetTitle: String
+  questionSetIntro: String
+  questionSetSubject: String
+  questionSetCreateTimestamp: Int
+  questionSetLastUpdateTimestamp: Int
+  questions: [Question]
+  questionSetComments: [QuestionSetComment]
+  questionSetFollows: [QuestionSetFollow]
+  questionSetReaction: [QuestionSetReaction]
+  questionSetTags: [QuestionSetTag]
+}
+
+type User {
+  userId: Int!
+  userName: String
+  userPhotoUrl: String
+  userIntro: String
+  userCreateTimestamp: Int
+  userLastInteractionTimestamp: Int
+  userTags: [UserTag]
+  questionSets: [QuestionSet]
+}
+
+type QuestionAnswer {
+  questionAnswerId: Int!
+  question: Question
+  questionAnswerMediaUrl: String
+  questionAnswerText: String
+  questionAnswerIsCorrect: Boolean
+  questionAnswerScore: Int
+  questionAnswerCreateTimestamp: Int
+  questionAnswerLastUpdateTimestamp: Int
+}
+
+type QuestionComment {
+  questionCommentId: Int!
+  questionCommentContent: String
+  question: Question
+  user: User
+  questionCommentCreateTimestamp: Int
+  questionCommentLastUpdateTimestamp: Int
+}
+
+type QuestionReaction {
+  questionReactionId: Int!
+  questionReactionType: QuestionReactionType
+  question: Question
+  user: User
+  questionReactionTimestamp: Int
+}
+
+enum QuestionReactionType {
+  EASY
+  HARD
+  LIKE
+  DISLIKE
+  REPORT
+  NOSEE
+  VIEW
+}
+
+type QuestionTag {
+  questionTagId: Int!
+  questionTagContent: String
+  question: Question
+  questionTagCreateTimestamp: String
+}
+
+type QuestionSumbit {
+  questionSumbitId: Int!
+  user: User
+  questionAnswer: questionAnswer
+  questionSumbitTimestamp: Int
+  questionSumbitTime: Float
+}
+
+type QuestionReport {
+  question: Question
+  questionReportStatistics: [QuestionAnswerReport]
+  questionReportTotal: Int
+}
+
+type QuestionAnswerReport {
+  questionAnswer: questionAnswer
+  questionAnswerReportCount: Int
+}
+
+type QuestionSetComment {
+  questionSetCommentId: Int!
+  questionSet: QuestionSet
+  questionSetComentContent: String
+  user: User
+}
+
+type QuestionSetFollow {
+  questionSetFollowId: Int!
+  user: User
+  questionSet: QuestionSet
+  questionSetFollowTimestamp: Int
+}
+
+type QuestionSetReaction {
+  questionSetReactionId: Int!
+  questionSetReactionType: QuestionSetReactionType
+  questionSet: QuestionSet
+  user: User
+  questionSetReactionTimestamp: Int
+}
+
+type QuestionSetReactionType {
+  EASY
+  HARD
+  LIKE
+  DISLIKE
+  REPORT
+  NOSEE
+}
+
+type QuestionSetTag {
+  questionSetTagId: Int!
+  questionSet: QuestionSet
+  questionSetTagContent: String
+  questionSetTagCreateTimestamp: Int
+}
+
+type UserTag {
+  userTagId: Int
+  user: User
+  userTagContent: String
+  userTagCreateTimestamp: Int
+}
+
+input QuestionInput {
+  questionSetId: Int
+  questionTitle: String
+  questionContent: String
+  questionMediaUrl: String
+  questionType: String
+}
+
+input QuestionSetInput {
+  userId: Int
+  questionSetTitle: String
+  questionSetIntro: String
+  questionSetSubject: String
+}
+
+input UserInput {
+  userName: String
+  userPhotoUrl: String
+  userIntro: String
+}
+
+input QuestionAnswerInput {
+  questionId: Int
+  questionAnswerMediaUrl: String
+  questionAnswerText: String
+  questionAnswerIsCorrect: Boolean
+  questionAnswerScore: Int
+}
+
+input QuestionCommentInput {
+  questionCommentContent: String
+  questionId: Int
+  userId: Int
+}
+
+input QuestionReactionInput {
+  questionReactionType: QuestionReactionType
+  questionId: Int
+  userId: Int
+}
+
+input QuestionTagInput {
+  questionTagContent: String
+  questionId: Int
+}
+
+input QuestionSumbitInput {
+  userId: Int
+  questionAnswerId: Int
+  questionSumbitTime: Float
+}
+
+input QuestionSetCommentInput {
+  questionSetId: Int
+  questionSetComentContent: String
+  userId: Int
+}
+
+input QuestionSetFollowInput {
+  userId: Int
+  questionSetId: Int
+}
+
+input QuestionSetReactionInput {
+  questionSetReactionType: QuestionSetReactionType
+  questionSetId: Int
+  userId: Int
+}
+
+input QuestionSetTagInput {
+  questionSetId: Int
+  questionSetTagContent: String
+}
+
+input UserTagInput {
+  userId: Int
+  userTagContent: String
+}

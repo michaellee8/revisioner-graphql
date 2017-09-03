@@ -25,6 +25,10 @@ module.exports = function(sequelize, DataTypes) {
           model: "questionAnswers",
           key: "questionAnswerId"
         }
+      },
+      questionSumbitTime: {
+        type: DataTypes.FLOAT,
+        allowNull: true
       }
     },
     {
