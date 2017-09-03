@@ -12,11 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       questionSetId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
-        references: {
-          model: "questionSets",
-          key: "questionSetId"
-        }
+        allowNull: false
       },
       questionTitle: {
         type: DataTypes.TEXT,
@@ -32,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       questionType: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        allowNull: true
       }
     },
     {

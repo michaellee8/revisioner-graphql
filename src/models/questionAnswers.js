@@ -12,11 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       questionId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
-        references: {
-          model: "questions",
-          key: "questionId"
-        }
+        allowNull: false
       },
       questionAnswerMediaUrl: {
         type: DataTypes.TEXT,
@@ -32,7 +28,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       questionAnswerScore: {
         type: DataTypes.INTEGER(11),
-        allowNull: false
+        allowNull: true
       }
     },
     {

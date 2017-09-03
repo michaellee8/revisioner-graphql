@@ -12,7 +12,7 @@ db
     console.log("Connection has been established successfully.");
     Object.keys(models).forEach(key =>
       models[key]
-        .sync({ force: false })
+        .sync({ force: true })
         .then(() => console.log("Model " + key + " is initalized"))
         .catch(err =>
           console.log("Model " + key + " is not initalized because of:\n", err)

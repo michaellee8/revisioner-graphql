@@ -12,19 +12,11 @@ module.exports = function(sequelize, DataTypes) {
       },
       userId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
-        references: {
-          model: "users",
-          key: "userId"
-        }
+        allowNull: false
       },
       questionSetId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
-        references: {
-          model: "questionSets",
-          key: "questionSetId"
-        }
+        allowNull: false
       }
     },
     {

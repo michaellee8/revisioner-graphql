@@ -12,19 +12,11 @@ module.exports = function(sequelize, DataTypes) {
       },
       questionSetId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
-        references: {
-          model: "questionSets",
-          key: "questionSetId"
-        }
+        allowNull: false
       },
       userId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
-        references: {
-          model: "users",
-          key: "userId"
-        }
+        allowNull: false
       },
       questionSetCommentContent: {
         type: DataTypes.TEXT,

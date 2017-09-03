@@ -12,27 +12,15 @@ module.exports = function(sequelize, DataTypes) {
       },
       questionReactionType: {
         type: DataTypes.STRING(255),
-        allowNull: false,
-        references: {
-          model: "questionReactionTypes",
-          key: "questionReactionType"
-        }
+        allowNull: false
       },
       questionId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
-        references: {
-          model: "questions",
-          key: "questionId"
-        }
+        allowNull: false
       },
       userId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
-        references: {
-          model: "users",
-          key: "userId"
-        }
+        allowNull: false
       }
     },
     {

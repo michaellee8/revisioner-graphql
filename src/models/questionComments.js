@@ -12,11 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       questionId: {
         type: DataTypes.INTEGER(11),
-        allowNull: false,
-        references: {
-          model: "questions",
-          key: "questionId"
-        }
+        allowNull: false
       },
       userId: {
         type: DataTypes.INTEGER(11),
