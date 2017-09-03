@@ -15,6 +15,22 @@ module.exports = function firebaseAuth(req, res, next) {
       .then(decodedToken => {
         if (decodedToken.uid === req.get("X-Firebase-Id")) {
           req.userFirebaseId = decodedToken.uid;
+          User.findOne({
+            where: { userFirebaseAuthId: decodedToken.uid }
+          })
+            .then(user => {
+              req.userId = user.userId;
+              next()
+            })
+            .catch(err =>
+              console.log(
+                "Error occured in login of " +
+                  decodedToken.uid +
+                  " because of: \n",
+                err
+              )
+              res.status(500).send({error:"Server internal error"})
+            );
           User.update(
             {},
             { where: { userFirebaseAuthId: decodedToken.uid } }
@@ -26,7 +42,6 @@ module.exports = function firebaseAuth(req, res, next) {
               err
             )
           );
-          next();
         } else {
           res.status(400).send({ error: "Invalid auth data" });
         }
