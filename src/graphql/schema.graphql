@@ -1,5 +1,6 @@
 type Query {
   question(id: Int!): Question
+  questionReport(id: Int!): QuestionReport
   questions(
     limit: Int = 20
     after: Int = 0
@@ -99,8 +100,6 @@ type Question {
   questionComments: [QuestionComment]
   questionReactions: [QuestionReaction]
   questionTags: [QuestionTag]
-  questionSumbit: [QuestionSumbit]
-  questionReport: [QuestionReport]
 }
 
 type QuestionSet {
@@ -114,7 +113,7 @@ type QuestionSet {
   questions: [Question]
   questionSetComments: [QuestionSetComment]
   questionSetFollows: [QuestionSetFollow]
-  questionSetReaction: [QuestionSetReaction]
+  questionSetReactions: [QuestionSetReaction]
   questionSetTags: [QuestionSetTag]
 }
 
@@ -127,6 +126,7 @@ type User {
   userLastInteractionTimestamp: Int
   userTags: [UserTag]
   questionSets: [QuestionSet]
+  questionSetFollows: [QuestionSetFollow]
 }
 
 type QuestionAnswer {
@@ -138,6 +138,7 @@ type QuestionAnswer {
   questionAnswerScore: Int
   questionAnswerCreateTimestamp: Int
   questionAnswerLastUpdateTimestamp: Int
+  questionSumbits: [QuestionSumbit]
 }
 
 type QuestionComment {
