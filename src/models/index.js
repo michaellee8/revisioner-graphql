@@ -207,7 +207,7 @@ module.exports = sequelize => {
     targetKey: "questionSetId"
   });
 
-  models.QuestionSetTag.belongsTo(models.User, {
+  models.UserTag.belongsTo(models.User, {
     as: "user",
     foreignKey: "userId",
     targetKey: "userId"
