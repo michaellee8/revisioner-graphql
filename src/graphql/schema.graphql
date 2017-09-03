@@ -1,3 +1,91 @@
+type Query {
+  question(id: Int!): Question
+  questions(
+    limit: Int = 20
+    after: Int = 0
+    tagContent: String = null
+  ): [Question]
+  questionSet(id: Int!): QuestionSet
+  questionSets(
+    limit: Int = 10
+    after: Int = 0
+    tagContent: String = null
+  ): [QuestionSet]
+  user(id: Int = 0): User
+}
+
+type Mutation {
+  question(
+    questionId: Int = null
+    question: QuestionInput = null
+    delete: Boolean = false
+  ): Question
+  questionSet(
+    questionSetId: Int = null
+    questionSet: QuestionInput = null
+    delete: Boolean = false
+  ): Question
+  user(
+    userId: Int = null
+    user: UserInput = null
+    delete: Boolean = false
+  ): User
+  questionAnswer(
+    questionAnswerId: Int = null
+    questionAnswer: QuestionAnswerInput = null
+    delete: Boolean = false
+  ): QuestionAnswer
+  questionComment(
+    questionCommentId: Int = null
+    questionComment: QuestionCommentInput = null
+    delete: Boolean = false
+  ): QuestionComment
+  questionReaction(
+    questionReactionId: Int = null
+    questionReaction: QuestionReactionInput = null
+    delete: Boolean = false
+  ): QuestionReaction
+  questionTag(
+    questionTagId: Int = null
+    questionTag: QuestionTagInput = null
+    delete: Boolean = false
+  ): QuestionTag
+  questionSumbit(
+    questionSumbitId: Int = null
+    questionSumbit: QuestionSumbitInput = null
+  ): Boolean
+  questionSetComment(
+    questionSetCommentId: Int = null
+    questionSetComment: QuestionSetCommentInput = null
+    delete: Boolean = false
+  ): QuestionSetComment
+  questionSetFollow(
+    questionSetFollowId: Int = null
+    questionSetFollow: QuestionSetFollowInput = null
+    delete: Boolean = false
+  ): QuestionSetFollow
+  questionSetFollow(
+    questionSetFollowId: Int = null
+    questionSetFollow: QuestionSetFollowInput = null
+    delete: Boolean = false
+  ): QuestionSetFollow
+  questionSetReaction(
+    questionSetReactionId: Int = null
+    questionSetReaction: QuestionSetReactionInput = null
+    delete: Boolean = false
+  ): QuestionSetReaction
+  questionSetTag(
+    questionSetTagId: Int = null
+    questionSetTag: QuestionSetTagInput = null
+    delete: Boolean = false
+  ): QuestionSetTag
+  userTag(
+    userTagId: Int = null
+    userTag: UserTagInput = null
+    delete: Boolean = false
+  ): UserTag
+}
+
 type Question {
   questionId: Int!
   questionSet: QuestionSet
@@ -89,7 +177,7 @@ type QuestionTag {
 type QuestionSumbit {
   questionSumbitId: Int!
   user: User
-  questionAnswer: questionAnswer
+  questionAnswer: QuestionAnswer
   questionSumbitTimestamp: Int
   questionSumbitTime: Float
 }
@@ -101,7 +189,7 @@ type QuestionReport {
 }
 
 type QuestionAnswerReport {
-  questionAnswer: questionAnswer
+  questionAnswer: QuestionAnswer
   questionAnswerReportCount: Int
 }
 
@@ -127,7 +215,7 @@ type QuestionSetReaction {
   questionSetReactionTimestamp: Int
 }
 
-type QuestionSetReactionType {
+enum QuestionSetReactionType {
   EASY
   HARD
   LIKE
@@ -180,13 +268,13 @@ input QuestionAnswerInput {
 }
 
 input QuestionCommentInput {
-  questionCommentContent: String
+  questionCommentContent: String!
   questionId: Int
   userId: Int
 }
 
 input QuestionReactionInput {
-  questionReactionType: QuestionReactionType
+  questionReactionType: QuestionReactionType!
   questionId: Int
   userId: Int
 }
