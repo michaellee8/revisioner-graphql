@@ -29,10 +29,10 @@ module.exports = function(sequelize, DataTypes) {
       updatedAt: false,
       indexes: [
         {
-          questionTagContent: ["poem"]
+          fields: ["questionTagContent"]
         },
         {
-          questionId: ["poem"]
+          fields: ["questionId"]
         }
       ]
     }

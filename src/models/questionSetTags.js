@@ -2,7 +2,7 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define(
-    "questionSetsTags",
+    "questionSetTags",
     {
       questionSetTagId: {
         type: DataTypes.INTEGER(11),
@@ -24,7 +24,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     {
-      tableName: "questionSetsTags",
+      tableName: "questionSetTags",
       createdAt: "questionSetTagCreateTimestamp",
       updatedAt: false,
       indexes: [
