@@ -3,7 +3,6 @@ var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var graphqlHTTP = require("express-graphql");
-var graphqlSchema = require("./graphql/schema");
 var graphqlRoot = require("./graphql/root");
 var firebaseAuth = require("./firebaseAuth");
 var fs = require("fs");
