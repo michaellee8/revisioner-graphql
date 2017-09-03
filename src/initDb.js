@@ -10,14 +10,16 @@ const models = require("./models")(db);
 
 function getModelSyncPromise(models, keys, index = 0) {
   return models[keys[index]]
-    .sync({ force: true, logging: false })
+    .sync({ force: false, logging: false })
     .then(() => {
       console.log(
         "\x1b[32m" + "Model " + keys[index] + " has been initalized" + "\x1b[0m"
       );
       return index + 1 < keys.length
         ? getModelSyncPromise(models, keys, index + 1)
-        : setTimeout(process.exit, 3000, 0);
+        : db.connectionManager
+            .close()
+            .then(() => console.log("Finish iniitalizing"));
     })
     .catch(err =>
       console.log(
