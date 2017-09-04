@@ -19,8 +19,9 @@ module.exports = function firebaseAuth(req, res, next) {
             where: { userFirebaseAuthId: decodedToken.uid }
           })
             .then(user => {
-              req.userId = user.userId;
-              next();
+              // req.userId = user.userId;
+              res.send({ uid: user.userId });
+              // next();
             })
             .catch(err => {
               console.log(
@@ -52,6 +53,7 @@ module.exports = function firebaseAuth(req, res, next) {
       });
   } else {
     req.userFirebaseId = null;
-    next();
+    res.status(400).send({ error: "Invalid auth data" });
+    // next();
   }
 };
