@@ -20,17 +20,17 @@ module.exports = function firebaseAuth(req, res, next) {
           })
             .then(user => {
               req.userId = user.userId;
-              next()
+              next();
             })
-            .catch(err =>
+            .catch(err => {
               console.log(
                 "Error occured in login of " +
                   decodedToken.uid +
                   " because of: \n",
                 err
-              )
-              res.status(500).send({error:"Server internal error"})
-            );
+              );
+              res.status(500).send({ error: "Server internal error" });
+            });
           User.update(
             {},
             { where: { userFirebaseAuthId: decodedToken.uid } }

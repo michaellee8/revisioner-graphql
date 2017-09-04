@@ -17,9 +17,7 @@ function getModelSyncPromise(models, keys, index = 0) {
       );
       return index + 1 < keys.length
         ? getModelSyncPromise(models, keys, index + 1)
-        : db.connectionManager
-            .close()
-            .then(() => console.log("Finish iniitalizing"));
+        : null;
     })
     .catch(err =>
       console.log(

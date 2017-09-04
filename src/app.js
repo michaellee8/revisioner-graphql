@@ -3,10 +3,12 @@ var logger = require("morgan");
 var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var graphqlHTTP = require("express-graphql");
-var graphqlRoot = require("./graphql/root");
+// var graphqlRoot = require("./graphql/root");
 var firebaseAuth = require("./firebaseAuth");
 var fs = require("fs");
 var { buildSchema } = require("graphql");
+const { getSchema } = require("graphql-sequelize-crud-teselagen");
+const db = require("./initDb");
 
 var app = express();
 
@@ -19,8 +21,9 @@ app.use(firebaseAuth);
 app.use(
   "/graphql",
   graphqlHTTP({
-    schema: buildSchema(fs.readFileSync("./graphql/schema.graphql", "utf-8")),
-    rootValue: graphqlRoot,
+    // schema: buildSchema(fs.readFileSync("./graphql/schema.graphql", "utf-8")),
+    schema: getSchema(db),
+    // rootValue: graphqlRoot,
     graphiql: true
   })
 );
