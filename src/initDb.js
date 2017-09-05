@@ -1,9 +1,14 @@
 var Sequelize = require("sequelize");
 var Promise = require("bluebird");
 
-const db = new Sequelize("revisioner", "root", "mlml1026", {
-  host: "localhost",
-  dialect: "mysql"
+const db = new Sequelize("revisioner", "apppp", "ggg-revisioner", {
+  // host: "/cloudsql/michaellee8-nuclide-server:asia-east1:revisioner-mysql",
+  dialect: "mysql",
+  // port: "12345",
+  dialectOptions: {
+    socketPath:
+      "/cloudsql/michaellee8-nuclide-server:asia-east1:revisioner-mysql"
+  }
 });
 
 const models = require("./models")(db);

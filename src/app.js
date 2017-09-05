@@ -12,7 +12,8 @@ const db = require("./initDb");
 
 var app = express();
 
-app.use(logger("dev"));
+// app.use(logger("dev"));
+app.enable("trust proxy");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
