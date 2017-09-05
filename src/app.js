@@ -6,6 +6,7 @@ var graphqlHTTP = require("express-graphql");
 // var graphqlRoot = require("./graphql/root");
 var firebaseAuth = require("./firebaseAuth");
 var fs = require("fs");
+var cors = require("cors");
 var { buildSchema } = require("graphql");
 const { getSchema } = require("graphql-sequelize-crud-teselagen");
 const db = require("./initDb");
@@ -14,6 +15,7 @@ var app = express();
 
 // app.use(logger("dev"));
 app.enable("trust proxy");
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

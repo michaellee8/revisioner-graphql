@@ -1,5 +1,7 @@
 runtime: nodejs
 env: flex
-
 beta_settings:
-  cloud_sql_instances: michaellee8-nuclide-server:asia-east1:revisioner-mysql
+  cloud_sql_instances: "michaellee8-nuclide-server:asia-east1:revisioner-mysql"
+env_variables:
+  CLOUDSQL_CONNECTION_NAME: "michaellee8-nuclide-server:asia-east1:revisioner-mysql"
+  INSTANCE_CONNECTION_NAME: "michaellee8-nuclide-server:asia-east1:revisioner-mysql"
