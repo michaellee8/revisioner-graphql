@@ -8,7 +8,7 @@ var firebaseAuth = require("./firebaseAuth");
 var fs = require("fs");
 var cors = require("cors");
 var { buildSchema } = require("graphql");
-const { getSchema } = require("./crud.js");
+const { getSchema } = require("./crud-t.js");
 console.log("gg");
 // const { getSchema } = require("graphql-sequelize-crud-teselagen");
 const db = require("./initDb");
