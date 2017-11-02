@@ -5,7 +5,7 @@ firebaseAdmin.initializeApp({
   credential: firebaseAdmin.credential.cert(
     require("./serviceAccountKey.json")
   ),
-  databaseURL: "https://revisioner-3c321.firebaseio.com"
+  databaseURL: "https://michaellee8-sba-revisioner.firebaseio.com"
 });
 module.exports = function firebaseAuth(req, res, next) {
   if (req.get("X-Firebase-Id") && req.get("X-Firebase-Token")) {
