@@ -1,13 +1,13 @@
 var Sequelize = require("sequelize");
 var Promise = require("bluebird");
 
-const db = new Sequelize("revisioner", "apppp", "ggg-revisioner", {
+const db = new Sequelize(process.env.SQL_DATABASE, process.env.SQL_USER, process.env.SQL_PASSWORD, {
   // host: "/cloudsql/michaellee8-nuclide-server:asia-east1:revisioner-mysql",
   dialect: "mysql",
   // port: "12345",
   dialectOptions: {
     socketPath:
-      "/cloudsql/michaellee8-nuclide-server:asia-east1:revisioner-mysql"
+      `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`
   }
 });
 
